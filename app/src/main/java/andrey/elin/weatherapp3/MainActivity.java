@@ -28,7 +28,7 @@ import andrey.elin.weatherapp3.model.WeatherRequest;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "WEATHER";
-    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=s%&appid=s%";
+    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?q=Moscow&APPID=d06e60407fcb25cb3b554cc5fdf89690";
 
     private EditText enteredCity;
     private EditText city;
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     // находим вьюшки
     private void init() {
-        enteredCity = findViewById(R.id.enteredCity);
         city = findViewById(R.id.textCity);
         temperature = findViewById(R.id.textTemprature);
         pressure = findViewById(R.id.textPressure);
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             try {
-                final String url = String.format(WEATHER_URL, enteredCity.getText(), "d06e60407fcb25cb3b554cc5fdf89690");
+                final String url = WEATHER_URL;
 
                 final URL uri = new URL(url);
                 final Handler handler = new Handler(); // Запоминаем основной поток
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("DefaultLocale")
         private void displayWeather(WeatherRequest weatherRequest) {
             city.setText(weatherRequest.getName());
-            temperature.setText(String.format("%f2", weatherRequest.getMain().getTemp() - 273.0));
+            temperature.setText(String.format("%.2f", weatherRequest.getMain().getTemp() - 273.0));
             pressure.setText(String.format("%d", weatherRequest.getMain().getPressure()));
             humidity.setText(String.format("%d", weatherRequest.getMain().getHumidity()));
             windSpeed.setText(String.format("%d", weatherRequest.getWind().getSpeed()));
