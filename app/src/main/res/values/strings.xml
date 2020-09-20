@@ -13,4 +13,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">History</string>
     <string name="search">Search</string>
+    <string name="exclamation">Важное сообщение!</string>
+    <string name="press_button">Сервер не отвечает...</string>
+    <string name="button">Закрыть</string>
 </resources>
