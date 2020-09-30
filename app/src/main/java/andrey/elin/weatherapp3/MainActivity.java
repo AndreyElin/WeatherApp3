@@ -3,6 +3,7 @@ package andrey.elin.weatherapp3;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         windSpeed = findViewById(R.id.textWindspeed);
         Button refresh = findViewById(R.id.refresh);
         refresh.setOnClickListener(clickListener);
+        refresh.setOnClickListener(clickAlertDialog1);
     }
 
     private Toolbar initToolbar() {
@@ -81,6 +84,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private final View.OnClickListener clickAlertDialog1 = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            // Создаем билдер и передаем контекст приложения
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            // в билдере указываем заголовок окна
+            builder.setTitle(R.string.exclamation)
+                    // указываем сообщение в окне
+                    .setMessage(R.string.press_button)
+                    // можно указать и пиктограмму
+                    .setIcon(R.mipmap.ic_launcher_round)
+                    // из этого окна нельзя выйти кнопкой back
+                    .setCancelable(false)
+                    // устанавливаем кнопку
+                    .setPositiveButton(R.string.button, null);
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    };
 
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
