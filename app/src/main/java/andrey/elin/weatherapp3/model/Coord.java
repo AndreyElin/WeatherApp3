@@ -1,8 +1,16 @@
 package andrey.elin.weatherapp3.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Coord {
 
+    @SerializedName("lat")
+    @Expose
     private float lat;
+
+    @SerializedName("lon")
+    @Expose
     private float lon;
 
     public float getLon() {
